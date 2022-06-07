@@ -1,4 +1,4 @@
-public class Main {
+public class DaysInTheYear {
     public static void main (String[] args) {
 
 //        Beispielwerte:
