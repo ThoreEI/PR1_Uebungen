@@ -8,6 +8,9 @@ public class Cell {
     }
 
     public void setFormula(String formula) {
+        if (formula.charAt(0) == '=')
+            formula = formula.substring(1);
+        this.formula = formula.toUpperCase();
         // TODO: Methode so implementieren, dass alle Formeln in Großbuchstaben umgewandelt werden
 
         // und das Gleichheitszeichen am Anfang entfernt wird

@@ -1,7 +1,10 @@
 package Hummel_Klausur;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -58,8 +61,7 @@ public class Spreadsheet {
     }
 
     private int getRow(String cellName) {
-
-    return 0;//TODO
+        return Character.getNumericValue(cellName.charAt(0)-1);
     }
 
 
@@ -76,6 +78,20 @@ public class Spreadsheet {
      */
     public void readCsv(String path, char separator, String startCellName) throws FileNotFoundException {
         startCellName = startCellName.toUpperCase();
+
+        File file = new File(path);
+        Scanner reader = new Scanner(file);
+
+        int startRow = getRow(startCellName);
+        int startColumn = getCol(startCellName);
+        String[] readLine = new String[0];
+        while (reader.hasNextLine()) {
+            readLine = reader.nextLine().split("" + separator);
+            for (int i = 0; i < readLine.length; i++)
+                cells[startRow][startColumn + i].setFormula(readLine[i]);
+            startRow++;
+        }
+        System.out.println(Arrays.toString(readLine));
 
         // TODO: Rest der Methode implementieren! -> 9 Punkte
     }
@@ -108,6 +124,12 @@ public class Spreadsheet {
         // TODO: Hier implementieren! -> 9 Punkte
 
         long sum = 0;
+        int startRow = getRow(startCellName);
+        int startCol = getCol(startCellName);
+        for (int i = 0; i <= startRow; i++)
+            for (int j = 0; j < startCol; j++)
+                if (!cells[i][j].isEmpty())
+                    sum +=  Integer.parseInt(cells[i][j].getValue());
 
         return sum;
     }
@@ -143,13 +165,13 @@ public class Spreadsheet {
 
     public String toString() {
         // TODO: sei die Anzahl der Zeilen = n und die Anzahl der Spalten = m.
-        // Wie groß ist dann die Komplexität der Methode in der O-Notation? -> 6 Punkte
+        // Wie groß ist dann die Komplexität der Methode in der O-Notation? -> 6 Punkte //
 
         StringBuilder sb = new StringBuilder();
 
         sb.append("   ");
         for (int i = 0; i < cells.length; i++) {
-            sb.append("  " + (char)('A'+ i) + "  | ");
+            sb.append("  ").append((char) ('A' + i)).append("  | ");
         }
 
         int rc = 1;
@@ -165,6 +187,10 @@ public class Spreadsheet {
 
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        
     }
 
 }
