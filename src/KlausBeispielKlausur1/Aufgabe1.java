@@ -3,8 +3,8 @@ package KlausBeispielKlausur1;
 public class Aufgabe1 {
     public static void main(String[] args) {
 
-
-        int w = f(2,3);
+        // a)
+        int w = f(2, 3); // 3
         System.out.println(w);
     }
 

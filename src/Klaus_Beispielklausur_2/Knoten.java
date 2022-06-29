@@ -3,14 +3,14 @@ package Klaus_Beispielklausur_2;
 public class Knoten {
 
     public static void main (String[] args) {
-        Knoten c = new Knoten(3, null);
-        Knoten n = new Knoten(3,null);
-        c.setNaechster(n);
-        Knoten d = new Knoten(1321, new Knoten(1, n));
-        n.setNaechster(d);
-        d.setNaechster(n);
-        boolean b =  n.kommtVor(c, 1321);
-        System.out.println(b);
+        Knoten n = new Knoten(1, new Knoten(1, null));
+        Knoten n2 = new Knoten(7, null);
+        Knoten n3 = new Knoten(8, null);
+        n.setNaechster(n2);
+        n2.setNaechster(n3);
+
+        boolean contains = n.kommtVor(n, 7);
+        System.out.println(contains);
     }
 
     private int wert;
@@ -37,12 +37,12 @@ public class Knoten {
         naechster = n;
     }
 
-    boolean kommtVor(Knoten n, int x) {
-       while (n != null) {
-           if (n.getWert() == x)
-               return true;
-           n = n.getNaechster();
-       }
+    boolean kommtVor(Knoten a, int x) {
+        while (a.getNaechster() != null) {
+            if (a.getNaechster().getWert() == x)
+                return true;
+            a = a.getNaechster();
+        }
         return false;
     }
 }
