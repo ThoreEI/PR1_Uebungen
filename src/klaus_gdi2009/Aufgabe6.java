@@ -19,18 +19,16 @@ public class Aufgabe6 {
     }
     public class List {
         Element head, last;
-
         void remove(int number) {
-            if (head.value == number)
-                head = head.next;
-            while(head.next != last) {
-                if (head.next.value == number) {
-                    Element tmp = head.next;
-                    head.next = tmp.next;
-                }
+            while(head != null) {
+                Element tmp = head;
+                if (tmp.value == number) {
+                    head = null;
+                } else
+                    insert(head.value);
             }
-
-
+            if (last.value == number)
+                last = null;
         }
 
         void append(int i) { // Anhängen am Ende

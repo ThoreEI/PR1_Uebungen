@@ -44,10 +44,6 @@ public class Aufgabe5 {
     public  class ListElement {
         int content;
         ListElement next;
-
-        public void removeLast() {
-
-        }
     }
 
 }
